@@ -19,7 +19,7 @@ MarkdownPreviewer and MarkdownConverter are lightweight Markdown tools based on 
 
 ## Download
 
-All versions of Oracle can be downloaded from [here](https://github.com/mayakron/markdowntools/releases).
+All versions of MarkdownTools can be downloaded from [here](https://github.com/mayakron/markdowntools/releases).
 
 ## Installation
 
