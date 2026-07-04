@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="100%"
+     height="100%"
+     viewBox="0 0 256 256"
+     preserveAspectRatio="none">
+
+  <rect x="0" y="0"
+        width="256" height="256"
+        rx="48" ry="48"
+        fill="#2E7D32"/>
+
+  <path
+    d="M68 164V92L96 124L128 92V164"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="20"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+  <path
+    d="M176 92V164"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="20"
+    stroke-linecap="round"/>
+
+  <path
+    d="M160 148L176 164L192 148"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="20"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+
+</svg>
