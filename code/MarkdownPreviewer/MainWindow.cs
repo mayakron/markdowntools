@@ -9,15 +9,15 @@ namespace MarkdownPreviewer
 {
     public partial class MainWindow : Form
     {
+        private DateTime CssFileLastWriteTime = DateTime.MinValue;
+
         private string CssFilePath;
 
         private string DocumentTitle;
 
-        private string MarkdownFilePath;
-
-        private DateTime CssFileLastWriteTime = DateTime.MinValue;
-
         private DateTime MarkdownFileLastWriteTime = DateTime.MinValue;
+
+        private string MarkdownFilePath;
 
         private string ScrollY;
 
@@ -113,7 +113,14 @@ namespace MarkdownPreviewer
                 Text = DocumentTitle;
             }
 
-            Timer.Enabled = true;
+            if (Program.Args.Length > 3)
+            {
+                Timer.Enabled = Program.Args[3].Equals("True", StringComparison.OrdinalIgnoreCase);
+            }
+            else
+            {
+                Timer.Enabled = true;
+            }
         }
 
         private async void TimerTick(object sender, EventArgs e)

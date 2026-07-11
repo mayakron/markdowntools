@@ -54,10 +54,6 @@ An ordered list:
 
 [A link to Wikipedia with title](https://www.wikipedia.org "This is the title")
 
-A media link to...
-
-![A media link to...](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-
 A standard placeholder image:
 
 ![Placeholder 200x100 Image](https://placehold.co/200x100)
@@ -112,13 +108,13 @@ An indented code block:
 
 ## Task lists
 
-In unordered lists:
+Using an unordered list:
 
 * [x] Completed task
 * [ ] Pending task
 * [ ] Another task
 
-In ordered lists:
+Using an ordered list:
 
 1. [x] Completed task
 2. [ ] Pending task

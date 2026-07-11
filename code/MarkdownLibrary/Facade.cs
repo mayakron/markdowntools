@@ -10,7 +10,7 @@ namespace MarkdownLibrary
         {
             var markdown = File.ReadAllText(markdownFilePath);
 
-            var style = File.ReadAllText(cssFilePath);
+            var style = File.Exists(cssFilePath) ? File.ReadAllText(cssFilePath) : null;
 
             var body = Markdown.ToHtml(markdown, isPreview ? new MarkdownPipelineBuilder().UseAdvancedExtensions().Build() : new MarkdownPipelineBuilder().UseAdvancedExtensions().Use(new MarkdigLinkRewriteExtension()).Build());
 
@@ -26,7 +26,11 @@ namespace MarkdownLibrary
                 document.AppendLine($"<title>{documentTitle}</title>");
             }
 
-            document.AppendLine($"<style>{style}</style>");
+            if (!string.IsNullOrEmpty(style))
+            {
+                document.AppendLine($"<style>{style}</style>");
+            }
+
             document.AppendLine("</head>");
             document.AppendLine("<body>");
 
