@@ -117,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MarkdownPreviewer.ico" />
+    <None Include="Styles\Default.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Styles\Default.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

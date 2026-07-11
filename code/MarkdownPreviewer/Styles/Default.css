@@ -8,18 +8,7 @@ body {
     margin: 0 auto;
     padding: 40px;
     word-wrap: break-word;
-}
-
-p,
-blockquote,
-ul,
-ol,
-dl,
-table,
-pre,
-details {
-    margin-top: 0;
-    margin-bottom: 16px;
+    text-underline-offset: 20%;
 }
 
 a {
@@ -80,6 +69,8 @@ blockquote {
     padding: 0 1em;
     color: #57606a;
     border-left: 0.25em solid #d0d7de;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
 }
 
 code,
@@ -222,4 +213,13 @@ hr {
 
 .markdown-alert-caution .markdown-alert-title {
     color: #cf222e;
+}
+
+.mermaid {
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.footnotes {
+    font-size: 75%;
 }

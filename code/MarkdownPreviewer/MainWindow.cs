@@ -43,7 +43,7 @@ namespace MarkdownPreviewer
 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1024, 800);
+            ClientSize = new System.Drawing.Size(1180, 800);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Markdown Previewer";
 

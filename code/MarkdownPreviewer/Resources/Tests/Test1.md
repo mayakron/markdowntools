@@ -124,7 +124,7 @@ Using an ordered list:
 
 Here is a sentence with a footnote.[^1]
 
-[^1]: And here is the footnote of the above sentence.
+[^1]: Here is the footnote of the above sentence.
 
 ## Abbreviations
 
