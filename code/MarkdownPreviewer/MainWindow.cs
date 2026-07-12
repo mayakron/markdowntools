@@ -96,7 +96,7 @@ namespace MarkdownPreviewer
             }
             else
             {
-                CssFilePath = @"Styles\Default.css";
+                CssFilePath = Path.Combine(Application.StartupPath, "Styles", "Default.min.css");
             }
 
             if (Program.Args.Length > 2)
@@ -113,9 +113,13 @@ namespace MarkdownPreviewer
                 Text = DocumentTitle;
             }
 
+            this.TimerTick(sender, e);
+
             if (Program.Args.Length > 3)
             {
-                Timer.Enabled = Program.Args[3].Equals("True", StringComparison.OrdinalIgnoreCase);
+                var timerEnabled = Program.Args[3].Equals("True", StringComparison.OrdinalIgnoreCase);
+                
+                Timer.Enabled = timerEnabled;
             }
             else
             {
