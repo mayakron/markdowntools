@@ -4,18 +4,11 @@
 
 <h4 align="center">A lightweight markdown previewer and converter based on the Markdig library</h4>
 
-<h4 align="center">
-  <a href="#features">Features</a>&nbsp;|&nbsp;
-  <a href="#download">Download</a>&nbsp;|&nbsp;
-  <a href="#installation">Installation</a>&nbsp;|&nbsp;
-  <a href="#license">License</a>
-</h4>
-
-![Main screenshot](https://raw.githubusercontent.com/mayakron/markdowntools/main/resources/MarkdownPreviewerMainScreenshot.png)
-
 ## Features
 
 MarkdownPreviewer and MarkdownConverter are lightweight Markdown tools based on the [Markdig](https://xoofx.github.io/markdig) library.
+
+![Main screenshot](https://raw.githubusercontent.com/mayakron/markdowntools/main/resources/MarkdownPreviewerMainScreenshot.png)
 
 ## Download
 
