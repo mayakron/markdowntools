@@ -56,6 +56,7 @@ namespace MarkdownPreviewer
 
             WebView.EnsureCoreWebView2Async(null);
 
+            WebView.CoreWebView2InitializationCompleted += WebViewCoreWebView2InitializationCompleted;
             WebView.NavigationCompleted += WebViewNavigationCompleted;
 
             Timer = new Timer
@@ -72,6 +73,43 @@ namespace MarkdownPreviewer
         }
 
         private void MainWindowLoad(object sender, EventArgs e)
+        {
+            // Nothing to do yet.
+        }
+
+        private async void TimerTick(object sender, EventArgs e)
+        {
+            try
+            {
+                var markdownFileLastWriteTime = new FileInfo(MarkdownFilePath).LastWriteTime;
+                var cssFileLastWriteTime = new FileInfo(CssFilePath).LastWriteTime;
+
+                if ((markdownFileLastWriteTime > MarkdownFileLastWriteTime) || (cssFileLastWriteTime > CssFileLastWriteTime))
+                {
+                    await UpdatePreviewAsync();
+
+                    MarkdownFileLastWriteTime = markdownFileLastWriteTime;
+                    CssFileLastWriteTime = cssFileLastWriteTime;
+
+                    Text = DocumentTitle;
+                }
+            }
+            catch (Exception ex)
+            {
+                Text = $"{DocumentTitle} ({ex.GetType()}: {ex.Message})";
+            }
+        }
+
+        private async Task UpdatePreviewAsync()
+        {
+            ScrollY = await WebView.ExecuteScriptAsync("window.scrollY;");
+
+            var html = MarkdownLibrary.Facade.MarkdownToHtml(MarkdownFilePath, CssFilePath, DocumentTitle);
+
+            WebView.NavigateToString(html);
+        }
+
+        private void WebViewCoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if ((Program.Args.Length > 0) && !Program.Args[0].Equals("-") && File.Exists(Program.Args[0]))
             {
@@ -99,7 +137,7 @@ namespace MarkdownPreviewer
                 CssFilePath = Path.Combine(Application.StartupPath, "Styles", "Default.min.css");
             }
 
-            if ((Program.Args.Length > 2) && !Program.Args[2].Equals("-"))
+            if ((Program.Args.Length > 2) && !Program.Args[2].Equals("-") && !string.IsNullOrEmpty(Program.Args[2]))
             {
                 DocumentTitle = Program.Args[2];
             }
@@ -108,52 +146,20 @@ namespace MarkdownPreviewer
                 DocumentTitle = Path.GetFileNameWithoutExtension(MarkdownFilePath);
             }
 
-            if (!string.IsNullOrWhiteSpace(DocumentTitle))
-            {
-                Text = DocumentTitle;
-            }
+            Text = DocumentTitle;
 
-            this.TimerTick(sender, e);
+            TimerTick(sender, null);
 
             if ((Program.Args.Length > 3) && !Program.Args[3].Equals("-"))
             {
                 var timerEnabled = Program.Args[3].Equals("True", StringComparison.OrdinalIgnoreCase);
-                
+
                 Timer.Enabled = timerEnabled;
             }
             else
             {
                 Timer.Enabled = true;
             }
-        }
-
-        private async void TimerTick(object sender, EventArgs e)
-        {
-            try
-            {
-                var markdownFileLastWriteTime = new FileInfo(MarkdownFilePath).LastWriteTime;
-                var cssFileLastWriteTime = new FileInfo(CssFilePath).LastWriteTime;
-
-                if ((markdownFileLastWriteTime > MarkdownFileLastWriteTime) || (cssFileLastWriteTime > CssFileLastWriteTime))
-                {
-                    await UpdatePreviewAsync();
-
-                    MarkdownFileLastWriteTime = markdownFileLastWriteTime;
-                    CssFileLastWriteTime = cssFileLastWriteTime;
-                }
-            }
-            catch
-            {
-            }
-        }
-
-        private async Task UpdatePreviewAsync()
-        {
-            ScrollY = await WebView.ExecuteScriptAsync("window.scrollY;");
-
-            var html = MarkdownLibrary.Facade.MarkdownToHtml(MarkdownFilePath, CssFilePath, DocumentTitle);
-
-            WebView.NavigateToString(html);
         }
 
         private async void WebViewNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
